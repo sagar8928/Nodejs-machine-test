@@ -11,7 +11,7 @@
 
 cd backend
 npm install
-npm start
+npm run dev
 
 ### Frontend
 
@@ -25,5 +25,7 @@ npm start
 database image
 <img src="images/database.png" width="350"/>
 category image
+go to   http://localhost:4200/categories
 <img src="images/product.png" width="350"/>
 product image
+go to   http://localhost:4200/products
