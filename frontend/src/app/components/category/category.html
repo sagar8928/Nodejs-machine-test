@@ -1,0 +1,53 @@
+<div class="container mt-4">
+  <h2>Category </h2>
+  
+  <div *ngIf="message" class="alert" [class.alert-success]="!isError" [class.alert-danger]="isError">
+    {{ message }}
+  </div>
+
+  <!-- Edit Form -->
+  <div class="card mb-4">
+    <div class="card-header">
+      {{ isEditing ? 'Edit Category' : 'Add New Category' }}
+    </div>
+    <div class="card-body">
+      <div class="form-group mb-3">
+        <label>Category Name:</label>
+        <input type="text" class="form-control" [(ngModel)]="currentCategory.CategoryName" placeholder="Enter category name">
+      </div>
+      <button class="btn btn-primary me-2" (click)="saveCategory()">
+        {{ isEditing ? 'Update' : 'Save' }}
+      </button>
+      <button class="btn btn-secondary" (click)="resetForm()" *ngIf="isEditing">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Categories List -->
+  <div class="card">
+    <div class="card-header">Categories List</div>
+    <div class="card-body">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Category ID</th>
+            <th>Category Name</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let category of categories">
+            <td>{{ category.CategoryId }}</td>
+            <td>{{ category.CategoryName }}</td>
+            <td>
+              <button class="btn btn-warning btn-sm me-2" (click)="editCategory(category)">Edit</button>
+              <button class="btn btn-danger btn-sm" (click)="deleteCategory(category.CategoryId)">Delete</button>
+            </td>
+          </tr>
+          <tr *ngIf="categories.length === 0">
+            <td colspan="3" class="text-center">No categories found</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
